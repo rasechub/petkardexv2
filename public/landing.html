@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PetKardex — Sistema de gestión veterinaria con historial médico digital, QR de mascotas y más. El cuidado que tu mascota merece." />
+  <meta name="keywords" content="veterinaria, software veterinario, historial médico mascotas, QR mascotas, PetKardex" />
+  <meta property="og:title" content="PetKardex — ERP Veterinario" />
+  <meta property="og:description" content="Gestión integral para tu clínica veterinaria con historial digital y código QR." />
+  <meta property="og:type" content="website" />
+  <title>PetKardex — El cuidado que tu mascota merece</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- Landing CSS -->
+  <link rel="stylesheet" href="assets/css/landing.css" />
+
+  <style>
+    /* Inline critical above-the-fold styles */
+    body { background: #0D0D0D; }
+    #hero { background: linear-gradient(135deg, #1A1A2E 0%, #2D1B69 100%); }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav id="mainNav" class="navbar navbar-expand-lg" aria-label="Navegación principal">
+  <div class="container">
+
+    <!-- Brand / Logo -->
+    <a class="navbar-brand" href="#inicio" aria-label="PetKardex inicio">
+      <!-- Paw SVG Logo -->
+      <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="50" cy="62" rx="28" ry="24" fill="#C48CFF"/>
+        <ellipse cx="22" cy="45" rx="10" ry="14" fill="#C48CFF" transform="rotate(-20 22 45)"/>
+        <ellipse cx="78" cy="45" rx="10" ry="14" fill="#C48CFF" transform="rotate(20 78 45)"/>
+        <ellipse cx="34" cy="28" rx="8" ry="11" fill="#C48CFF" transform="rotate(-10 34 28)"/>
+        <ellipse cx="66" cy="28" rx="8" ry="11" fill="#C48CFF" transform="rotate(10 66 28)"/>
+        <ellipse cx="50" cy="62" rx="16" ry="12" fill="#7B52AB"/>
+        <path d="M42 65 Q50 55 58 65" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="brand-text">PetKardex</span>
+    </a>
+
+    <!-- Hamburger -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+            aria-controls="navbarMain" aria-expanded="false" aria-label="Abrir menú">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+        <span class="hamburger-inner"></span>
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 py-3 py-lg-0">
+        <li class="nav-item">
+          <a class="nav-link nav-link-pk" href="#inicio">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-pk" href="#nosotros">Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-pk" href="#servicios">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-pk" href="#contacto">Contacto</a>
+        </li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <a href="/app/login" class="nav-link btn-portal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;" aria-hidden="true">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            Portal Veterinario
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav><!-- /nav -->
+
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="inicio">
+  <div id="hero">
+    <!-- Particle canvas -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+    <!-- Slider -->
+    <div class="hero-slider" role="region" aria-label="Carrusel principal">
+
+      <!-- Slide 1 -->
+      <div class="hero-slide" role="tabpanel" aria-label="Slide 1 de 3">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-badge" aria-label="Versión 2.0 lanzada">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              Nuevo · PetKardex v2.0
+            </div>
+            <h1 class="hero-title">
+              El cuidado que<br><span class="accent">tu mascota merece</span>
+            </h1>
+            <p class="hero-subtitle">
+              Gestión veterinaria inteligente con historial digital, recordatorios automáticos y acceso instantáneo desde cualquier dispositivo.
+            </p>
+            <div class="hero-cta-group">
+              <a href="/app/login" class="btn-hero-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Comenzar ahora
+              </a>
+              <a href="#nosotros" class="btn-hero-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 15 15 12 10 9"/></svg>
+                Conoce más
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide" role="tabpanel" aria-label="Slide 2 de 3">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h1v1H9zM14 9h1v1h-1zM9 14h1v1H9zM14 14h1v1h-1z"/></svg>
+              Tecnología QR Integrada
+            </div>
+            <h1 class="hero-title">
+              Historial médico<br><span class="accent">digital con QR</span>
+            </h1>
+            <p class="hero-subtitle">
+              Genera un código QR único para cada mascota. Escanea y accede al historial completo en segundos desde tu teléfono.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#qr-feature" class="btn-hero-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h1v1H9zM14 9h1v1h-1z"/></svg>
+                Ver cómo funciona
+              </a>
+              <a href="/app/login" class="btn-hero-secondary">Portal veterinario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide" role="tabpanel" aria-label="Slide 3 de 3">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              ERP Completo
+            </div>
+            <h1 class="hero-title">
+              Gestión integral<br><span class="accent">veterinaria</span>
+            </h1>
+            <p class="hero-subtitle">
+              Todo lo que necesitas: citas, facturación, inventario, reportes, roles de usuario y mucho más en una sola plataforma.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#servicios" class="btn-hero-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Ver servicios
+              </a>
+              <a href="#contacto" class="btn-hero-secondary">Contactar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hero-slider -->
+
+    <!-- Slider Dots -->
+    <div class="slider-dots" role="tablist" aria-label="Navegación del carrusel">
+      <button class="dot" role="tab" aria-label="Ir al slide 1" aria-selected="true"></button>
+      <button class="dot" role="tab" aria-label="Ir al slide 2" aria-selected="false"></button>
+      <button class="dot" role="tab" aria-label="Ir al slide 3" aria-selected="false"></button>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="hero-stats">
+      <div class="container">
+        <div class="row g-0">
+          <div class="col-4 stat-item">
+            <div class="stat-number" data-count="12500" data-suffix="+">0</div>
+            <div class="stat-label">Pacientes registrados</div>
+          </div>
+          <div class="col-4 stat-item">
+            <div class="stat-number" data-count="85000" data-suffix="+">0</div>
+            <div class="stat-label">Consultas realizadas</div>
+          </div>
+          <div class="col-4 stat-item">
+            <div class="stat-number" data-count="340" data-suffix="+">0</div>
+            <div class="stat-label">Veterinarios activos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero -->
+</section>
+
+
+<!-- ============================================================
+     NOSOTROS
+     ============================================================ -->
+<section id="nosotros" class="py-5">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Left: Text -->
+      <div class="col-lg-6 reveal">
+        <span class="section-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          Quiénes somos
+        </span>
+        <h2 class="section-title">Tecnología al servicio<br>del bienestar animal</h2>
+        <p class="section-subtitle mb-4">
+          PetKardex nació de la pasión por los animales y la necesidad de modernizar la gestión veterinaria. 
+          Somos un equipo multidisciplinario comprometido con brindar las mejores herramientas digitales 
+          para clínicas y consultorios veterinarios.
+        </p>
+        <p class="text-muted mb-5" style="font-size:.95rem;line-height:1.8;">
+          Desde 2020, hemos acompañado a cientos de profesionales en su transformación digital, 
+          asegurando que cada mascota cuente con un historial completo, accesible y seguro.
+        </p>
+
+        <!-- Stats grid in left col -->
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="number" data-count="98" data-suffix="%">0</div>
+            <div class="label">Satisfacción de clientes</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="number" data-count="4" data-suffix=" años">0</div>
+            <div class="label">De experiencia</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="number" data-count="150" data-suffix="+">0</div>
+            <div class="label">Clínicas activas</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="number" data-count="24" data-suffix="/7">0</div>
+            <div class="label">Soporte disponible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Mission/Vision cards -->
+      <div class="col-lg-6">
+        <div class="nosotros-visual reveal">
+
+          <!-- Mission -->
+          <div class="vision-card">
+            <div class="vision-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Nuestra Misión</h4>
+              <p>Proporcionar a los profesionales veterinarios una plataforma digital intuitiva y poderosa que eleve la calidad del cuidado animal, simplificando la gestión clínica y fortaleciendo el vínculo entre veterinarios y propietarios de mascotas.</p>
+            </div>
+          </div>
+
+          <!-- Vision -->
+          <div class="vision-card" style="border-left-color: var(--gold);">
+            <div class="vision-icon" style="background: linear-gradient(135deg, var(--gold), var(--gold-2));">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Nuestra Visión</h4>
+              <p>Ser el sistema de gestión veterinaria de referencia en Latinoamérica, reconocido por su innovación, confiabilidad y compromiso con el bienestar de cada mascota registrada en nuestra plataforma.</p>
+            </div>
+          </div>
+
+          <!-- Values -->
+          <div class="vision-card" style="border-left-color: #48CFAD;">
+            <div class="vision-icon" style="background: linear-gradient(135deg, #48CFAD, #0E9F7E);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Nuestros Valores</h4>
+              <p>Innovación continua, transparencia en cada proceso, empatía hacia animales y propietarios, y excelencia técnica como estándar mínimo en todo lo que construimos.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICIOS
+     ============================================================ -->
+<section id="servicios" style="background: var(--white); padding: 6rem 0;">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-badge">Lo que ofrecemos</span>
+      <h2 class="section-title mx-auto" style="display:block;text-align:center;">Nuestros Servicios</h2>
+      <p class="section-subtitle mx-auto mt-2" style="text-align:center;">
+        Una suite completa de módulos diseñados para cubrir todas las necesidades de tu clínica veterinaria.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Card 1: Consulta General -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3>Consulta General</h3>
+        <p>Registro completo de cada consulta con anamnesis, examen físico digital, diagnóstico CIE y plan de tratamiento detallado. Historial accesible en tiempo real.</p>
+      </div>
+
+      <!-- Card 2: Vacunación -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <h3>Vacunación</h3>
+        <p>Control de cartillas de vacunación con recordatorios automáticos, catálogo de vacunas actualizado y certificados digitales para cada mascota.</p>
+      </div>
+
+      <!-- Card 3: Cirugía -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3>Cirugía</h3>
+        <p>Protocolo quirúrgico digital con consentimiento informado, anestesia registrada, seguimiento postoperatorio y alertas de complicaciones en tiempo real.</p>
+      </div>
+
+      <!-- Card 4: Pet Shop -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <h3>Pet Shop</h3>
+        <p>Módulo de inventario integrado con ventas de productos, alimentos, accesorios y medicamentos. Alertas de stock bajo y reporte de ventas automáticos.</p>
+      </div>
+
+      <!-- Card 5: Estética Canina -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Estética Canina</h3>
+        <p>Agenda de baños, cortes y tratamientos estéticos con historial de preferencias, notas del groomer y ficha de cada mascota para servicio personalizado.</p>
+      </div>
+
+      <!-- Card 6: Hospitalización -->
+      <div class="service-card reveal">
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M12 8v8M8 12h8"/>
+          </svg>
+        </div>
+        <h3>Hospitalización</h3>
+        <p>Gestión de internados con asignación de boxes, seguimiento de medicación por horas, evolución clínica diaria y notificaciones al propietario en tiempo real.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     QR FEATURE SECTION
+     ============================================================ -->
+<section id="qr-feature">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Left: Steps -->
+      <div class="col-lg-6 reveal">
+        <span class="section-badge" style="background: rgba(196,140,255,0.15); color: var(--primary); border-color: rgba(196,140,255,0.3);">
+          Innovación
+        </span>
+        <h2 class="section-title qr-title">Acceso instantáneo<br>con código QR</h2>
+        <p class="section-subtitle qr-subtitle mb-5">
+          Cada mascota tiene su propio código QR único. Cualquier veterinario puede escanear 
+          y acceder inmediatamente al historial médico completo, vacunas y alertas críticas.
+        </p>
+
+        <div class="qr-steps">
+          <div class="qr-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Genera el QR</h4>
+              <p>Al registrar una mascota, el sistema genera automáticamente un código QR único vinculado a su expediente médico digital.</p>
+            </div>
+          </div>
+          <div class="qr-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Escanea en cualquier momento</h4>
+              <p>Desde la aplicación móvil o cualquier lector QR estándar, accede al perfil completo de la mascota en segundos, sin necesitar contraseña.</p>
+            </div>
+          </div>
+          <div class="qr-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Accede al historial completo</h4>
+              <p>Visualiza consultas anteriores, vacunas aplicadas, medicamentos, alertas médicas y datos del propietario de forma clara y organizada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Phone Mockup -->
+      <div class="col-lg-6 d-flex justify-content-center reveal">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <!-- Header -->
+            <div class="phone-header">
+              <div class="phone-avatar">MX</div>
+              <div>
+                <div class="phone-pet-name">Max · Golden Retriever</div>
+                <div class="phone-pet-breed">Macho · 3 años · 28.5 kg</div>
+              </div>
+            </div>
+
+            <!-- Data rows -->
+            <div class="phone-data-row">
+              <span class="phone-data-label">Última consulta</span>
+              <span class="phone-data-value">08/11/2026</span>
+            </div>
+            <div class="phone-data-row">
+              <span class="phone-data-label">Próxima vacuna</span>
+              <span class="phone-data-value" style="color: var(--gold);">15/12/2026</span>
+            </div>
+            <div class="phone-data-row">
+              <span class="phone-data-label">Veterinario</span>
+              <span class="phone-data-value">Dr. García</span>
+            </div>
+            <div class="phone-data-row">
+              <span class="phone-data-label">Alertas</span>
+              <span class="phone-data-value" style="color: #FF6B9D;">Alérgico a Penicilina</span>
+            </div>
+
+            <!-- QR -->
+            <div class="phone-qr-box">
+              <div class="phone-qr-pattern"></div>
+            </div>
+
+            <div class="phone-pill">🔒 Código QR único · PetKardex v2</div>
+
+            <!-- More data -->
+            <div class="phone-data-row" style="margin-top:.4rem;">
+              <span class="phone-data-label">Microchip</span>
+              <span class="phone-data-value" style="font-size:.6rem;">985141000123456</span>
+            </div>
+            <div class="phone-data-row">
+              <span class="phone-data-label">Propietario</span>
+              <span class="phone-data-value">Carlos López</span>
+            </div>
+          </div>
+          <div class="phone-glow"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TESTIMONIOS
+     ============================================================ -->
+<section id="testimonios" style="background: var(--bg-light); padding: 6rem 0;">
+  <div class="container">
+    <div class="text-center reveal mb-5">
+      <span class="section-badge">Testimonios</span>
+      <h2 class="section-title mx-auto" style="display:block;text-align:center;">Lo que dicen nuestros clientes</h2>
+      <p class="section-subtitle mx-auto mt-2" style="text-align:center;">
+        Más de 150 clínicas veterinarias confían en PetKardex para gestionar su práctica diaria.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Testimonial 1 -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="Calificación: 5 de 5 estrellas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "PetKardex transformó completamente nuestra clínica. Antes tardábamos 20 minutos buscando el historial de un paciente, ahora lo tenemos en segundos con el QR. ¡Es un antes y un después!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #C48CFF, #7B52AB);">MG</div>
+            <div>
+              <div class="author-name">Dra. María García</div>
+              <div class="author-role">Clínica Veterinaria Huellitas · Bogotá</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="Calificación: 5 de 5 estrellas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "La función de hospitalización es simplemente genial. Puedo ver desde casa cómo están mis pacientes internados, revisar los medicamentos aplicados y enviar actualizaciones a los dueños. Increíble."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #48CFAD, #0E9F7E);">CR</div>
+            <div>
+              <div class="author-name">Dr. Carlos Ruiz</div>
+              <div class="author-role">VetSalud Centro · Lima</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="Calificación: 5 de 5 estrellas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Como propietaria de una cadena de 3 clínicas, PetKardex nos dio visibilidad total. Los reportes de ventas del pet shop integrados con la parte clínica son exactamente lo que necesitábamos. Súper recomendado."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #FFD700, #F0C040); color: #333;">AP</div>
+            <div>
+              <div class="author-name">Ana Pérez</div>
+              <div class="author-role">Grupo Mascota Feliz · Ciudad de México</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACTO
+     ============================================================ -->
+<section id="contacto" style="background: var(--white); padding: 6rem 0;">
+  <div class="container">
+    <div class="text-center reveal mb-5">
+      <span class="section-badge">Contacto</span>
+      <h2 class="section-title mx-auto" style="display:block;text-align:center;">¿Listo para empezar?</h2>
+      <p class="section-subtitle mx-auto mt-2" style="text-align:center;">
+        Contáctanos y un especialista te guiará en la implementación de PetKardex en tu clínica.
+      </p>
+    </div>
+
+    <div class="row g-5">
+
+      <!-- Form -->
+      <div class="col-lg-7 reveal">
+        <div class="contact-form">
+          <h3 style="font-size:1.4rem;margin-bottom:1.8rem;color:var(--text-dark);">Envíanos un mensaje</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="contactNombre">Nombre completo</label>
+              <input type="text" id="contactNombre" name="nombre" class="form-control-pk" placeholder="Tu nombre y apellido" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Correo electrónico</label>
+              <input type="email" id="contactEmail" name="email" class="form-control-pk" placeholder="tu@email.com" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label for="contactMensaje">Mensaje</label>
+              <textarea id="contactMensaje" name="mensaje" class="form-control-pk" rows="5" placeholder="Cuéntanos sobre tu clínica y qué necesitas..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary-pk w-100 justify-content-center">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              Enviar mensaje
+            </button>
+            <div id="formSuccess" class="form-success" role="alert" aria-live="polite">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              ¡Mensaje enviado! Te contactaremos pronto.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact Info + Map -->
+      <div class="col-lg-5 reveal">
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <h5>Dirección</h5>
+            <p>Av. Veterinaria 1234, Piso 3<br>Ciudad de México, CDMX 06600</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 15.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 4.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 11a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <h5>Teléfono / WhatsApp</h5>
+            <p>+52 55 1234 5678</p>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <h5>Correo Electrónico</h5>
+            <p>soporte@petkardex.com</p>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="map-placeholder" role="img" aria-label="Mapa de ubicación">
+          <div class="map-placeholder-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <p>Ciudad de México, México</p>
+            <p style="font-size:.78rem;opacity:.7;margin-top:.3rem;">Av. Veterinaria 1234, Piso 3</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Brand col -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="50" cy="62" rx="28" ry="24" fill="#C48CFF"/>
+            <ellipse cx="22" cy="45" rx="10" ry="14" fill="#C48CFF" transform="rotate(-20 22 45)"/>
+            <ellipse cx="78" cy="45" rx="10" ry="14" fill="#C48CFF" transform="rotate(20 78 45)"/>
+            <ellipse cx="34" cy="28" rx="8" ry="11" fill="#C48CFF" transform="rotate(-10 34 28)"/>
+            <ellipse cx="66" cy="28" rx="8" ry="11" fill="#C48CFF" transform="rotate(10 66 28)"/>
+          </svg>
+          <span class="brand-text">PetKardex</span>
+        </div>
+        <p class="footer-desc">
+          El sistema de gestión veterinaria más completo de Latinoamérica. 
+          Digitaliza tu clínica y ofrece el mejor cuidado a cada mascota.
+        </p>
+        <div class="footer-social" role="list" aria-label="Redes sociales">
+          <!-- Facebook -->
+          <a href="#" class="social-link" role="listitem" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="social-link" role="listitem" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" class="social-link" role="listitem" aria-label="Twitter / X" title="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="#" class="social-link" role="listitem" aria-label="WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links col -->
+      <div class="col-lg-2 col-md-6 col-6">
+        <h5 class="footer-heading">Navegación</h5>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#qr-feature">Tecnología QR</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal col -->
+      <div class="col-lg-3 col-md-6 col-6">
+        <h5 class="footer-heading">Legal</h5>
+        <ul class="footer-links">
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalTerminos">Términos y Condiciones</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalPrivacidad">Política de Privacidad</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalCookies">Política de Cookies</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalReembolso">Política de Reembolso</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact info col -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-heading">Contacto</h5>
+        <ul class="footer-links">
+          <li><a href="mailto:soporte@petkardex.com">soporte@petkardex.com</a></li>
+          <li><a href="tel:+525512345678">+52 55 1234 5678</a></li>
+          <li>Lun–Vie: 8:00 – 18:00</li>
+          <li>Sáb: 9:00 – 13:00</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+    <p class="footer-bottom">
+      © <span id="copyrightYear">2024</span> <span>PetKardex</span>. Todos los derechos reservados. 
+      Hecho con ❤️ para los amantes de las mascotas.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     MODALES LEGALES
+     ============================================================ -->
+
+<!-- Modal: Términos y Condiciones -->
+<div class="modal fade" id="modalTerminos" tabindex="-1" aria-labelledby="modalTerminosLabel" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTerminosLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Términos y Condiciones de Uso
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Última actualización:</strong> 1 de noviembre de 2026</p>
+        <p>Bienvenido a PetKardex. Al acceder y utilizar nuestra plataforma, usted acepta quedar vinculado por los presentes Términos y Condiciones de Uso. Lea detenidamente el siguiente documento.</p>
+
+        <h5>1. Aceptación de los Términos</h5>
+        <p>El uso del sistema PetKardex implica la aceptación plena e incondicional de todas y cada una de las disposiciones incluidas en estos Términos. Si no está de acuerdo con alguna disposición, deberá abstenerse de utilizar la plataforma.</p>
+
+        <h5>2. Descripción del Servicio</h5>
+        <p>PetKardex es un sistema de gestión veterinaria SaaS (Software como Servicio) que permite a clínicas, consultorios y veterinarios independientes gestionar historiales clínicos de mascotas, vacunaciones, citas, inventario y facturación. El servicio incluye acceso web, almacenamiento en la nube y soporte técnico según el plan contratado.</p>
+
+        <h5>3. Registro y Cuenta de Usuario</h5>
+        <p>Para utilizar PetKardex deberá registrarse proporcionando información veraz, completa y actualizada. Usted es responsable de mantener la confidencialidad de sus credenciales de acceso. Cualquier actividad realizada desde su cuenta será de su exclusiva responsabilidad. Notifique inmediatamente a soporte@petkardex.com ante cualquier uso no autorizado.</p>
+
+        <h5>4. Uso Permitido</h5>
+        <p>Usted se compromete a utilizar PetKardex exclusivamente para fines legítimos relacionados con la gestión veterinaria. Queda expresamente prohibido: (a) compartir credenciales de acceso con terceros no autorizados; (b) intentar acceder a datos de otras clínicas; (c) usar la plataforma para actividades ilegales; (d) realizar ingeniería inversa o copiar el software.</p>
+
+        <h5>5. Propiedad Intelectual</h5>
+        <p>Todo el contenido de PetKardex, incluyendo pero no limitado a código fuente, diseño, logotipos, textos, bases de datos y documentación, está protegido por las leyes de propiedad intelectual aplicables. Ningún elemento puede ser reproducido sin autorización escrita expresa de PetKardex S.A.S.</p>
+
+        <h5>6. Datos de Mascotas y Pacientes</h5>
+        <p>La información clínica registrada pertenece a la clínica contratante. PetKardex actúa como encargado del tratamiento y se compromete a no comercializar, ceder ni compartir dichos datos con terceros sin autorización, salvo obligación legal. PetKardex mantiene copias de seguridad diarias durante el período de contratación.</p>
+
+        <h5>7. Disponibilidad del Servicio</h5>
+        <p>PetKardex garantiza una disponibilidad del 99.5% mensual, excluyendo mantenimientos programados (máximo 4 horas mensuales, notificadas con 48 horas de anticipación). No nos hacemos responsables de interrupciones causadas por fuerza mayor, problemas de conectividad del cliente o ataques externos.</p>
+
+        <h5>8. Limitación de Responsabilidad</h5>
+        <p>PetKardex no será responsable por daños indirectos, incidentales o consecuentes derivados del uso o imposibilidad de uso del servicio. La responsabilidad máxima de PetKardex no podrá exceder el importe pagado por el cliente en los últimos tres meses.</p>
+
+        <h5>9. Modificaciones</h5>
+        <p>PetKardex se reserva el derecho de modificar estos Términos en cualquier momento, notificando al usuario con al menos 15 días de antelación mediante correo electrónico registrado. El uso continuado del servicio implica aceptación de los nuevos términos.</p>
+
+        <h5>10. Jurisdicción y Ley Aplicable</h5>
+        <p>Los presentes Términos se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier controversia será sometida a los tribunales competentes de la Ciudad de México, renunciando las partes a cualquier otro fuero que pudiera corresponderles.</p>
+
+        <h5>11. Contacto</h5>
+        <p>Para cualquier consulta relacionada con estos Términos, contacte a: legal@petkardex.com</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary-pk" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Política de Privacidad -->
+<div class="modal fade" id="modalPrivacidad" tabindex="-1" aria-labelledby="modalPrivacidadLabel" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPrivacidadLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Política de Privacidad
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Última actualización:</strong> 1 de noviembre de 2026 · Versión 2.0</p>
+        <p>En PetKardex S.A.S., nos comprometemos a proteger la privacidad de nuestros usuarios conforme al Reglamento General de Protección de Datos (RGPD/GDPR), la Ley Orgánica de Protección de Datos (LOPD) y la Ley Federal de Protección de Datos Personales en Posesión de Particulares (México).</p>
+
+        <h5>1. Responsable del Tratamiento</h5>
+        <p>PetKardex S.A.S., con domicilio en Av. Veterinaria 1234, Piso 3, CDMX. Contacto DPO: privacidad@petkardex.com</p>
+
+        <h5>2. Datos Personales que Recopilamos</h5>
+        <p><strong>De usuarios veterinarios:</strong> Nombre completo, correo electrónico, número de cédula profesional, fotografía de perfil, teléfono, dirección IP y datos de acceso.</p>
+        <p><strong>De propietarios de mascotas:</strong> Nombre, apellido, correo, teléfono, domicilio, DNI/CURP, fecha de nacimiento y foto (opcional).</p>
+        <p><strong>De mascotas (pacientes):</strong> Nombre, especie, raza, fecha de nacimiento, sexo, peso, color, número de microchip, fotografía, historial clínico completo, vacunas, diagnósticos y tratamientos.</p>
+
+        <h5>3. Finalidad del Tratamiento</h5>
+        <p>Los datos son tratados para: (a) proveer el servicio de gestión veterinaria contratado; (b) gestionar historiales médicos de mascotas; (c) enviar recordatorios de citas y vacunas; (d) emitir facturas y comprobantes; (e) mejorar la plataforma mediante análisis estadísticos anonimizados; (f) cumplir obligaciones legales.</p>
+
+        <h5>4. Base Legal del Tratamiento</h5>
+        <p>El tratamiento se fundamenta en: (a) ejecución del contrato de servicio; (b) consentimiento explícito del interesado para comunicaciones; (c) interés legítimo para seguridad de la plataforma; (d) cumplimiento de obligaciones legales.</p>
+
+        <h5>5. Conservación de los Datos</h5>
+        <p>Los datos clínicos se conservan durante toda la vigencia del contrato más 5 años adicionales, según obligaciones legales veterinarias. Los datos de usuario se eliminan 30 días después de la cancelación de la cuenta.</p>
+
+        <h5>6. Derechos del Interesado (ARCO + Portabilidad)</h5>
+        <p>Usted tiene derecho a: Acceso, Rectificación, Cancelación (Supresión), Oposición, Portabilidad y Limitación del tratamiento. Ejerza sus derechos en: privacidad@petkardex.com adjuntando identificación oficial.</p>
+
+        <h5>7. Transferencias Internacionales</h5>
+        <p>Los datos pueden ser procesados en servidores ubicados en Estados Unidos y la Unión Europea, amparados por cláusulas contractuales estándar de la Comisión Europea y el Privacy Shield sucesor.</p>
+
+        <h5>8. Medidas de Seguridad</h5>
+        <p>Implementamos cifrado AES-256 en reposo, TLS 1.3 en tránsito, autenticación de dos factores, auditorías de seguridad trimestrales y copias de seguridad cifradas diarias en múltiples ubicaciones geográficas.</p>
+
+        <h5>9. Menores de Edad</h5>
+        <p>PetKardex no recopila datos de menores de 18 años de forma directa. Los propietarios menores deben contar con autorización de su tutor legal para registrar datos en la plataforma.</p>
+
+        <h5>10. Contacto y Autoridad de Control</h5>
+        <p>Para ejercer derechos o presentar quejas: privacidad@petkardex.com. También puede acudir al INAI (México) o la AEPD (España) según corresponda.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary-pk" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Política de Cookies -->
+<div class="modal fade" id="modalCookies" tabindex="-1" aria-labelledby="modalCookiesLabel" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCookiesLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          Política de Cookies
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Última actualización:</strong> 1 de noviembre de 2026</p>
+        <p>Esta Política de Cookies explica qué son las cookies, cómo las utilizamos en PetKardex y cuáles son sus opciones respecto a las mismas.</p>
+
+        <h5>1. ¿Qué son las Cookies?</h5>
+        <p>Las cookies son pequeños archivos de texto que se almacenan en su navegador cuando visita un sitio web. Permiten que el sitio recuerde información sobre su visita, mejorando la experiencia de usuario en visitas posteriores.</p>
+
+        <h5>2. Tipos de Cookies que Utilizamos</h5>
+
+        <h5>2.1 Cookies Estrictamente Necesarias</h5>
+        <p>Esenciales para el funcionamiento del sistema. No pueden desactivarse. Incluyen:</p>
+        <ul>
+          <li><code>pk_session</code> — Gestión de sesión de usuario (duración: sesión)</li>
+          <li><code>pk_csrf</code> — Protección contra ataques CSRF (duración: sesión)</li>
+          <li><code>pk_auth</code> — Token de autenticación cifrado (duración: 7 días con "recordarme")</li>
+        </ul>
+
+        <h5>2.2 Cookies de Preferencias</h5>
+        <p>Permiten recordar sus preferencias de uso:</p>
+        <ul>
+          <li><code>pk_lang</code> — Idioma seleccionado (duración: 1 año)</li>
+          <li><code>pk_theme</code> — Tema visual (claro/oscuro) (duración: 1 año)</li>
+          <li><code>pk_sidebar</code> — Estado del panel lateral (duración: 30 días)</li>
+        </ul>
+
+        <h5>2.3 Cookies Analíticas</h5>
+        <p>Nos ayudan a entender cómo se usa la plataforma (datos anonimizados):</p>
+        <ul>
+          <li><code>_pk_id</code> — Identificador de visitante único de Matomo (autohospedado) (duración: 13 meses)</li>
+          <li><code>_pk_ses</code> — Sesión de análisis Matomo (duración: 30 minutos)</li>
+        </ul>
+        <p>Utilizamos Matomo Analytics con IP anonimizada y sin compartir datos con terceros.</p>
+
+        <h5>2.4 Cookies de Seguridad</h5>
+        <ul>
+          <li><code>pk_device</code> — Identificación de dispositivo para alertas de seguridad (duración: 90 días)</li>
+          <li><code>pk_2fa_trust</code> — Dispositivo de confianza para 2FA (duración: 30 días)</li>
+        </ul>
+
+        <h5>3. Cookies de Terceros</h5>
+        <p>En la landing page utilizamos CDNs para Bootstrap, fuentes de Google Fonts y Animate.css. Google Fonts puede establecer cookies propias sujetas a su política de privacidad. No utilizamos Google Analytics, Facebook Pixel ni ningún otro rastreador publicitario.</p>
+
+        <h5>4. Cómo Gestionar las Cookies</h5>
+        <p>Puede configurar su navegador para rechazar cookies, aunque esto puede afectar el funcionamiento del sistema. Instrucciones para: <a href="#" style="color: var(--primary);">Chrome</a> · <a href="#" style="color: var(--primary);">Firefox</a> · <a href="#" style="color: var(--primary);">Safari</a> · <a href="#" style="color: var(--primary);">Edge</a>.</p>
+
+        <h5>5. Actualizaciones</h5>
+        <p>Esta política puede actualizarse. La versión vigente siempre estará disponible en esta sección. Contacto: cookies@petkardex.com</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline-pk" data-bs-dismiss="modal">Solo necesarias</button>
+        <button type="button" class="btn-primary-pk" data-bs-dismiss="modal">Aceptar todas</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Política de Reembolso -->
+<div class="modal fade" id="modalReembolso" tabindex="-1" aria-labelledby="modalReembolsoLabel" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalReembolsoLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Política de Reembolso
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Última actualización:</strong> 1 de noviembre de 2026</p>
+        <p>En PetKardex nos esforzamos por ofrecer un servicio de máxima calidad. Si no está satisfecho, esta política establece las condiciones bajo las cuales puede solicitar un reembolso.</p>
+
+        <h5>1. Período de Prueba Gratuita</h5>
+        <p>Ofrecemos un período de prueba gratuita de 14 días sin necesidad de tarjeta de crédito. Durante este período puede evaluar todas las funcionalidades del plan seleccionado sin ningún cargo.</p>
+
+        <h5>2. Garantía de Satisfacción de 30 Días</h5>
+        <p>Los nuevos suscriptores que paguen su primera mensualidad tienen derecho a solicitar un reembolso completo dentro de los primeros 30 días calendario desde el primer cobro, sin necesidad de justificación. Esta garantía aplica únicamente al primer pago.</p>
+
+        <h5>3. Reembolsos por Fallo del Servicio</h5>
+        <p>Si PetKardex no cumple con el SLA de disponibilidad del 99.5% mensual, el cliente tiene derecho a un crédito proporcional calculado como:</p>
+        <ul>
+          <li>Disponibilidad 99.0% – 99.4%: 10% de crédito mensual</li>
+          <li>Disponibilidad 95.0% – 98.9%: 25% de crédito mensual</li>
+          <li>Disponibilidad inferior al 95.0%: 50% de crédito mensual</li>
+        </ul>
+        <p>Los créditos se aplican automáticamente en la siguiente factura y no son canjeables por dinero en efectivo.</p>
+
+        <h5>4. Servicios No Reembolsables</h5>
+        <p>Los siguientes servicios no están sujetos a reembolso: (a) servicios de implementación y configuración inicial ya ejecutados; (b) capacitaciones y formaciones realizadas; (c) desarrollo de módulos personalizados; (d) planes anuales pagados (sí aplica crédito según SLA); (e) meses parciales tras cancelación.</p>
+
+        <h5>5. Cancelación de Suscripción</h5>
+        <p>Puede cancelar su suscripción en cualquier momento desde el panel de administración o contactando a soporte@petkardex.com. La cancelación tiene efecto al finalizar el período pagado. No se realizan cargos adicionales tras la cancelación. Los datos permanecen disponibles para exportación durante 30 días tras la cancelación.</p>
+
+        <h5>6. Proceso de Solicitud de Reembolso</h5>
+        <p>Para solicitar un reembolso: (1) Envíe un correo a facturacion@petkardex.com con asunto "Solicitud de Reembolso - [Nombre de su clínica]"; (2) Incluya el número de factura y motivo; (3) Recibirá respuesta en máximo 2 días hábiles; (4) El reembolso aprobado se procesa en 5–10 días hábiles al método de pago original.</p>
+
+        <h5>7. Disputas y Contracargos</h5>
+        <p>Le pedimos contactarnos antes de iniciar una disputa con su banco. Resolvemos el 98% de los casos en menos de 48 horas. Iniciar un contracargo sin haber contactado a soporte puede resultar en la suspensión inmediata de la cuenta.</p>
+
+        <h5>8. Contacto para Reembolsos</h5>
+        <p>Email: facturacion@petkardex.com · Tel: +52 55 1234 5678 (Lun–Vie 9:00–17:00)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary-pk" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap 5.3 JS Bundle (Popper included) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Landing JS -->
+<script src="assets/js/landing.js"></script>
+
+</body>
+</html>

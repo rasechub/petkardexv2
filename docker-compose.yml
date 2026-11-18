@@ -1,0 +1,91 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: petkardex_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - uploads:/var/www/html/public/uploads
+    environment:
+      - APP_ENV=${APP_ENV:-development}
+      - APP_URL=${APP_URL:-http://localhost:8080}
+      - APP_KEY=${APP_KEY:-}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=petkardex
+      - DB_USERNAME=petkardex_user
+      - DB_PASSWORD=PetK@rdex2024!
+      - MAIL_HOST=mailhog
+      - MAIL_PORT=1025
+      - MAIL_FROM=noreply@petkardex.local
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - petkardex_net
+
+  db:
+    image: mysql:8.0
+    container_name: petkardex_db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "R00tPetK@rdex!"
+      MYSQL_DATABASE: petkardex
+      MYSQL_USER: petkardex_user
+      MYSQL_PASSWORD: "PetK@rdex2024!"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pR00tPetK@rdex!"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - petkardex_net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: petkardex_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: petkardex_user
+      PMA_PASSWORD: "PetK@rdex2024!"
+      MYSQL_ROOT_PASSWORD: "R00tPetK@rdex!"
+      UPLOAD_LIMIT: 50M
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - petkardex_net
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: petkardex_mailhog
+    restart: unless-stopped
+    ports:
+      - "8025:8025"   # Web UI
+      - "1025:1025"   # SMTP
+    networks:
+      - petkardex_net
+
+networks:
+  petkardex_net:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
+  uploads:
+    driver: local

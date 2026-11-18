@@ -1,0 +1,32 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment and secrets
+.env
+.env.backup
+.env.local
+.env.production
+!.env.example
+
+# User uploads (keep directory structure)
+/public/uploads/*
+!/public/uploads/.gitkeep
+!/public/uploads/qr/
+/public/uploads/qr/*
+!/public/uploads/qr/.gitkeep
+!/public/uploads/mascotas/
+/public/uploads/mascotas/*
+!/public/uploads/mascotas/.gitkeep
+
+# Logs and cache
+*.log
+/logs/
+/storage/logs/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
