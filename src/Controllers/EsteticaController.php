@@ -5,6 +5,10 @@
  * Interfaz exclusiva para Estilista / Groomer (y SuperAdmin).
  * Muestra únicamente las citas de baño/corte del día actual y permite
  * emitir Alertas Médicas internas visibles al Veterinario y en el Kardex.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

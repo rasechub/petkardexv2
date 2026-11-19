@@ -4,6 +4,10 @@
  *
  * Gestiona el listado general de Pacientes / Mascotas, búsqueda
  * y registro de nuevas mascotas con asignación automática de QR único.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

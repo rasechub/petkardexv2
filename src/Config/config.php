@@ -2,6 +2,10 @@
 /**
  * PetKardex v2 - Configuración principal del sistema
  * ERP Veterinario
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -10,9 +14,13 @@ namespace PetKardex\Config;
 
 class Config
 {
-    // ─── Configuración de la aplicación ───────────────────────────────────
-    public const APP_NAME    = 'PetKardex';
-    public const APP_VERSION = '2.0.0';
+    // ─── Configuración de la aplicación y autoría ─────────────────────────
+    public const APP_NAME        = 'PetKardex';
+    public const APP_VERSION     = '2.0.0';
+    public const APP_AUTHOR      = 'CESAR AQUINO ANGLAS - VI B NOCHE';
+    public const APP_INSTITUTION = 'IESTP Santiago Antúnez de Mayolo (IESTP SAM)';
+    public const APP_COPYRIGHT   = '© 2026 PetKardex | Desarrollado por CESAR AQUINO ANGLAS - VI B NOCHE';
+    public const APP_LICENSE     = 'Todos los derechos reservados (All Rights Reserved)';
 
     // ─── Rutas de archivos y uploads ──────────────────────────────────────
     public const ROOT_PATH   = __DIR__ . '/../..';
@@ -254,22 +262,37 @@ class Config
     {
         $envSecure = filter_var(self::env('SESSION_SECURE', 'false'), FILTER_VALIDATE_BOOLEAN);
         $httpsOn   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-            || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+            || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+            || (($_SERVER['HTTP_X_FORWARDED_SSL'] ?? '') === 'on')
+            || (($_SERVER['SERVER_PORT'] ?? '') === '443');
 
         return self::SESSION_SECURE || $envSecure || $httpsOn;
     }
 
     public static function getBaseUrl(): string
     {
+        // 1. Si la petición web llega a través de un proxy/túnel (como ngrok, Cloudflare Tunnel, etc.)
+        $forwardedProto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
+        $forwardedHost  = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? '';
+
+        if (!empty($forwardedHost)) {
+            $scheme = !empty($forwardedProto) ? strtolower($forwardedProto) : 'https';
+            return $scheme . '://' . $forwardedHost;
+        }
+
+        // 2. Si hay cabecera HTTP_HOST en la petición web actual
+        if (!empty($_SERVER['HTTP_HOST'])) {
+            $scheme = self::isSessionSecure() ? 'https' : 'http';
+            return $scheme . '://' . $_SERVER['HTTP_HOST'];
+        }
+
+        // 3. Fallback a la variable de entorno APP_URL si se ejecuta desde CLI / cron
         $envUrl = self::env('APP_URL', '');
         if ($envUrl !== '') {
             return rtrim($envUrl, '/');
         }
 
-        $scheme = self::isSessionSecure() ? 'https' : 'http';
-        $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
-
-        return $scheme . '://' . $host;
+        return 'http://localhost:8080';
     }
 
     public static function getAppKey(): string

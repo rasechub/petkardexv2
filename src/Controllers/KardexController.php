@@ -2,6 +2,10 @@
 /**
  * PetKardex v2 - KardexController (Módulo Clínico)
  *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
+ *
  * Reglas de negocio estrictas:
  * - Veterinarios (tratantes) y SuperAdmin pueden crear registros clínicos y vacunas.
  * - Propietarios tienen acceso estrictamente de SOLO LECTURA sobre sus propias mascotas.
@@ -624,6 +628,9 @@ class KardexController extends Controller
             $options->set('defaultFont', 'DejaVu Sans');
 
             $dompdf = new \Dompdf\Dompdf($options);
+            $dompdf->addInfo('Author', Config::APP_AUTHOR);
+            $dompdf->addInfo('Creator', Config::APP_AUTHOR . ' | ' . Config::APP_NAME);
+            $dompdf->addInfo('Title', 'Certificado Médico Veterinario — ' . $paciente['nombre']);
             $dompdf->loadHtml($html, 'UTF-8');
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
@@ -633,7 +640,8 @@ class KardexController extends Controller
 
         if (class_exists('\TCPDF')) {
             $pdf = new \TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-            $pdf->SetCreator(Config::APP_NAME);
+            $pdf->SetCreator(Config::APP_AUTHOR . ' | ' . Config::APP_NAME);
+            $pdf->SetAuthor(Config::APP_AUTHOR);
             $pdf->SetTitle('Certificado Médico Veterinario — ' . $paciente['nombre']);
             $pdf->setPrintHeader(false);
             $pdf->setPrintFooter(false);
@@ -683,6 +691,8 @@ class KardexController extends Controller
         $alertas     = Security::e((string) ($paciente['alertas_medicas'] ?: 'Ninguna registrada'));
         $vetDisplay  = Security::e($vetFirmante !== '' ? $vetFirmante : 'Médico Veterinario Tratante');
         $fechaHoy    = date('d/m/Y H:i');
+        $appCopy     = Security::e(Config::APP_COPYRIGHT);
+        $appInst     = Security::e(Config::APP_INSTITUTION);
 
         $rowsHtml = '';
         if (empty($vacunaciones)) {
@@ -705,6 +715,8 @@ class KardexController extends Controller
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta charset="UTF-8" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <style>
     body { font-family: DejaVu Sans, Arial, sans-serif; color: #111827; font-size: 12px; margin: 28px; }
     .letterhead {
@@ -791,7 +803,8 @@ class KardexController extends Controller
   </div>
 
   <div class="footer-note">
-    Documento emitido el {$fechaHoy} · Código QR Paciente: {$qrCode}
+    Documento emitido el {$fechaHoy} · Código QR Paciente: {$qrCode}<br/>
+    <strong>{$appCopy}</strong> · {$appInst} · Todos los derechos reservados.
   </div>
 </body>
 </html>

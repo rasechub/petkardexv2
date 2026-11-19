@@ -4,6 +4,10 @@
  *
  * Parsea REQUEST_URI, registra rutas con control de autenticación y roles (ACL),
  * soporta parámetros dinámicos (/paciente/{id}) y hace dispatch al controlador.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -148,6 +152,8 @@ class Router
 
         // ── Rutas Públicas (Sin Login) ──────────────────────────────────────
         $this->get('/qr/{uuid}', [QRController::class, 'emergencyProfile']);
+        $this->get('/app/qr/generar/{uuid}', [QRController::class, 'renderQRImage']);
+        $this->get('/qr/render/{uuid}', [QRController::class, 'renderQRImage']);
         $this->get('/app/login', [AuthController::class, 'loginPage']);
         $this->post('/app/login', [AuthController::class, 'loginProcess']);
         $this->any('/app/logout', [AuthController::class, 'logout']);
@@ -371,6 +377,11 @@ class Router
     private function resolveMethod(): string
     {
         $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+
+        // Peticiones HEAD se procesan usando las mismas rutas que GET
+        if ($method === 'HEAD') {
+            return 'GET';
+        }
 
         if ($method === 'POST' && isset($_POST['_method'])) {
             $override = strtoupper(trim((string) $_POST['_method']));

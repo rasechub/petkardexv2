@@ -4,6 +4,10 @@
  *
  * Maneja autenticación segura, sesiones con expiración por inactividad,
  * control de roles (ACL), permisos JSON y recuperación de contraseña.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

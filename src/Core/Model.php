@@ -4,6 +4,10 @@
  *
  * Proporciona CRUD genérico con consultas preparadas PDO y validación
  * estricta de identificadores SQL para evitar inyecciones.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

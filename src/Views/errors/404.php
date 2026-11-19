@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <title>404 — Página no encontrada | PetKardex</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
@@ -26,7 +28,14 @@
     <div class="code">404</div>
     <h1 class="h3 mt-2 mb-3">Página no encontrada</h1>
     <p class="text-white-50 mb-4">La ruta solicitada no existe o ha sido movida.</p>
-    <a href="/" class="btn-pk">Volver al inicio</a>
+    <div class="mb-4">
+      <a href="/" class="btn-pk">Volver al inicio</a>
+    </div>
+
+    <div class="mt-4 pt-3 border-top border-secondary-subtle text-white-50" style="font-size: 0.72rem;">
+      <div><?= \PetKardex\Config\Config::APP_COPYRIGHT ?></div>
+      <div><?= \PetKardex\Config\Config::APP_INSTITUTION ?> · Todos los derechos reservados.</div>
+    </div>
   </div>
 </body>
 </html>

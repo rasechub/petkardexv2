@@ -156,9 +156,24 @@ ob_start();
               </td>
               <td>
                 <?php if (!empty($pet['qr_code'])): ?>
-                  <a href="/qr/<?= Security::e(rawurlencode((string) $pet['qr_code'])) ?>" target="_blank" class="btn btn-sm btn-outline-secondary rounded-2" title="Abrir ficha pública QR">
+                  <?php
+                    $petUuid   = (string) $pet['qr_code'];
+                    $petQrImg  = '/app/qr/generar/' . rawurlencode($petUuid);
+                    $petQrDown = '/app/qr/descargar/' . rawurlencode($petUuid);
+                    $petQrUrl  = '/qr/' . rawurlencode($petUuid);
+                  ?>
+                  <button type="button"
+                          class="btn btn-sm btn-outline-secondary rounded-2 js-btn-ver-qr"
+                          title="Ver y Descargar Código QR"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalQrMascota"
+                          data-pet-name="<?= Security::e((string) $pet['nombre']) ?>"
+                          data-pet-uuid="<?= Security::e($petUuid) ?>"
+                          data-pet-img="<?= Security::e($petQrImg) ?>"
+                          data-pet-down="<?= Security::e($petQrDown) ?>"
+                          data-pet-url="<?= Security::e($petQrUrl) ?>">
                     <i class="bi bi-qr-code"></i>
-                  </a>
+                  </button>
                 <?php else: ?>
                   <span class="text-muted">-</span>
                 <?php endif; ?>
@@ -318,6 +333,43 @@ ob_start();
     </div>
   </div>
 </div>
+
+<!-- Modal para Visualizar y Descargar Código QR -->
+<div class="modal fade" id="modalQrMascota" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+      <div class="modal-header text-white p-3 px-4" style="background: linear-gradient(135deg, #0D0D0D 0%, #2D1B69 100%);">
+        <h5 class="modal-title fw-bold">
+          <i class="bi bi-qr-code me-2" style="color: #C48CFF;"></i>Código QR: <span id="modalQrPetName" class="text-white"></span>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body p-4 text-center">
+        <div class="d-inline-block p-3 rounded-4 border bg-white shadow-sm mb-3" style="border-color: rgba(196,140,255,0.45) !important;">
+          <img id="modalQrImg" src="" alt="Código QR" width="230" height="230" class="img-fluid rounded-2" />
+        </div>
+        <div class="mb-3">
+          <span class="d-block text-muted" style="font-size: 0.72rem;">UUID Único en Base de Datos</span>
+          <code id="modalQrUuid" class="small px-2 py-1 rounded bg-light text-dark d-inline-block mt-1"></code>
+        </div>
+        <p class="text-muted small mb-0">
+          Al escanear esta placa o abrir el enlace, se muestra el Perfil de Emergencia público con los teléfonos de contacto y alertas clínicas sin requerir inicio de sesión.
+        </p>
+      </div>
+      <div class="modal-footer bg-light d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Cerrar</button>
+        <div class="d-flex gap-2">
+          <a id="modalQrLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark rounded-3">
+            <i class="bi bi-box-arrow-up-right me-1"></i>Ver Perfil Público
+          </a>
+          <a id="modalQrDownload" href="#" class="btn btn-pk-primary px-3 rounded-3">
+            <i class="bi bi-download me-1"></i>Descargar PNG
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <?php endif; ?>
 
 <script>
@@ -370,6 +422,29 @@ ob_start();
         });
       });
     }
+
+    // Modal de previsualización y descarga del Código QR
+    const modalQrPetName  = document.getElementById('modalQrPetName');
+    const modalQrImg      = document.getElementById('modalQrImg');
+    const modalQrUuid     = document.getElementById('modalQrUuid');
+    const modalQrLink     = document.getElementById('modalQrLink');
+    const modalQrDownload = document.getElementById('modalQrDownload');
+
+    document.querySelectorAll('.js-btn-ver-qr').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-pet-name') || '';
+        const uuid = btn.getAttribute('data-pet-uuid') || '';
+        const img  = btn.getAttribute('data-pet-img')  || '';
+        const down = btn.getAttribute('data-pet-down') || '';
+        const url  = btn.getAttribute('data-pet-url')  || '';
+
+        if (modalQrPetName)  modalQrPetName.textContent = name;
+        if (modalQrUuid)     modalQrUuid.textContent    = uuid;
+        if (modalQrImg)      modalQrImg.src             = img;
+        if (modalQrLink)     modalQrLink.href           = url;
+        if (modalQrDownload) modalQrDownload.href       = down;
+      });
+    });
   });
 </script>
 

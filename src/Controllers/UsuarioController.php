@@ -5,6 +5,10 @@
  * Módulo de Gestión de Usuarios (SuperAdmin y Recepcionista):
  * Permite listar, activar/desactivar y registrar Propietarios (con DNI),
  * Veterinarios, Recepcionistas, Estilistas y Guardias.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

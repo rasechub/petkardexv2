@@ -5,6 +5,10 @@
  * Exclusivo para SuperAdmin y Recepcionista/Cajero.
  * Permite ventas de mostrador, cobro de servicios, liquidación de cuentas médicas
  * buscadas por DNI o UUID QR, cálculo de vuelto y emisión de comprobante.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

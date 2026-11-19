@@ -5,6 +5,10 @@
  * Gestiona el mapa de jaulas/caniles (Ocupada, Libre, En Limpieza),
  * formulario rápido de Triage/Emergencias, bitácora de evolución por turno
  * (con descuento de medicamentos hacia la cuenta POS) y alta médica.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

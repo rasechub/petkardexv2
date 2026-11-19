@@ -1,9 +1,16 @@
 # 🐾 PetKardex_v2 — ERP Clínico Veterinario e Historial Digital QR
 
+> ### 📜 Autoría y Derechos de Autor (Copyright)
+> **© 2026 PetKardex — Desarrollado por CESAR AQUINO ANGLAS - VI B NOCHE**  
+> *(VI Ciclo, Turno Noche — IESTP Santiago Antúnez de Mayolo - IESTP SAM)*.  
+> **Todos los derechos reservados.** Prohibida su copia, distribución, modificación o uso comercial/académico no autorizado. Consulte el archivo [`LICENSE`](LICENSE) para más detalles.
+
 ![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat-square)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square)
+![License](https://img.shields.io/badge/Licencia-Todos_los_derechos_reservados-crimson?style=flat-square)
+![Author](https://img.shields.io/badge/Autor-CESAR_AQUINO_ANGLAS-purple?style=flat-square)
 
 **PetKardex_v2** es un sistema integral de gestión de clínicas veterinarias (ERP) construido en **PHP 8+ (arquitectura MVC nativa con PDO preparado)** y **MySQL 8.0**, listo para desplegarse con **Docker**. Combina la operación clínica, logística y financiera de la clínica con un sistema de identificación e historial médico digital accesible mediante **códigos QR**.
 
@@ -212,3 +219,19 @@ Tras completar este paso, inicia sesión en **http://localhost:8080/app/login** 
 | `groomer` | Agenda estética del día actual y emisión de alertas médicas hacia veterinarios y Kardex |
 | `propietario` | Solo lectura: dashboard resumen, historial médico inmutable, descarga de QR y sus próximas citas |
 | `emergencia` | Vista pública `/qr/{uuid}` sin login (foto, alertas médicas críticas, botones `tel:` y `wa.me/`) |
+
+---
+
+## 🏛️ Derechos de Autor y Propiedad Intelectual
+
+```text
+===================================================================================
+© 2026 PetKardex — Desarrollado por CESAR AQUINO ANGLAS - VI B NOCHE
+(VI Ciclo, Turno Noche - IESTP Santiago Antúnez de Mayolo - IESTP SAM)
+Todos los derechos reservados.
+===================================================================================
+```
+
+Este proyecto de software, su arquitectura, base de datos relacional, código fuente y diseño son obra y propiedad intelectual exclusiva de **CESAR AQUINO ANGLAS - VI B NOCHE** (IESTP Santiago Antúnez de Mayolo, 2026).
+
+Queda estrictamente prohibida la copia, reproducción parcial o total, distribución, ingeniería inversa o explotación con fines comerciales o académicos sin la autorización previa y por escrito del autor titular. Para más información, consulte el archivo [LICENSE](LICENSE).

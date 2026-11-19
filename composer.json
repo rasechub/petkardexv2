@@ -3,6 +3,13 @@
     "description": "PetKardex v2 — ERP Veterinario con gestión de pacientes, historial clínico, QR y más",
     "type": "project",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "CESAR AQUINO ANGLAS - VI B NOCHE",
+            "role": "Developer & Author",
+            "homepage": "https://github.com"
+        }
+    ],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {

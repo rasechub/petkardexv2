@@ -4,6 +4,10 @@
  *
  * Centraliza consultas del historial clínico, cirugías previas, vacunaciones,
  * recetas médicas e invariante legal de inmutabilidad pasadas 24 horas.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

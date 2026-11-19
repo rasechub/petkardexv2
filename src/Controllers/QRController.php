@@ -8,6 +8,10 @@
  * - Descarga directa de imagen QR (/app/qr/descargar/{uuid})
  * - Regeneración segura de UUID (/app/qr/regenerar/{id})
  * - Escáner Interno para la Clínica (/app/qr/scanner) y resolución hacia Kardex Médico
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -162,7 +166,7 @@ class QRController extends Controller
 
             $publicUrl              = $this->buildPublicQrUrl((string) $mascota['qr_code']);
             $mascota['qr_url']      = $publicUrl;
-            $mascota['qr_image_src'] = $this->buildQrApiUrl($publicUrl, 360);
+            $mascota['qr_image_src'] = '/app/qr/generar/' . rawurlencode((string) $mascota['qr_code']);
         }
         unset($mascota);
 
@@ -175,6 +179,68 @@ class QRController extends Controller
             'mascotas'   => $mascotas,
             'csrfToken'  => $this->generateToken(),
         ]);
+    }
+
+    /**
+     * GET /app/qr/generar/{uuid} y GET /qr/render/{uuid}
+     * Transmite en tiempo real la imagen oficial del código QR (PNG o SVG)
+     * codificando la URL dinámica del perfil público de emergencia.
+     */
+    public function renderQRImage(string $uuid = ''): void
+    {
+        $uuid = $this->sanitizeUuid($uuid);
+        if ($uuid === '') {
+            http_response_code(400);
+            header('Content-Type: text/plain; charset=UTF-8');
+            echo 'UUID de código QR inválido.';
+            exit;
+        }
+
+        // Limpiar cualquier búfer previo para no corromper los bytes de la imagen
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        $format = strtolower((string) ($this->query('format', 'png')));
+        $size   = isset($_GET['size']) ? (int) $_GET['size'] : 300;
+        $size   = max(120, min(800, $size));
+
+        $publicUrl = $this->buildPublicQrUrl($uuid);
+
+        try {
+            if ($format === 'svg') {
+                $bytes    = $this->generateQrSvgString($publicUrl, $size);
+                $mimeType = 'image/svg+xml; charset=UTF-8';
+            } else {
+                $bytes    = $this->generateQrPngBytesDirect($publicUrl, $size);
+                $mimeType = 'image/png';
+            }
+
+            header('Content-Type: ' . $mimeType);
+            header('Content-Length: ' . strlen($bytes));
+            header('Cache-Control: public, max-age=86400, stale-while-revalidate=604800');
+            echo $bytes;
+            exit;
+        } catch (\Throwable $e) {
+            error_log('[QRController] Error al renderizar QR: ' . $e->getMessage());
+
+            // Respaldo automático: si falla PNG por GD, intentar salida SVG sin GD
+            if ($format !== 'svg') {
+                try {
+                    $svgBytes = $this->generateQrSvgString($publicUrl, $size);
+                    header('Content-Type: image/svg+xml; charset=UTF-8');
+                    header('Content-Length: ' . strlen($svgBytes));
+                    header('Cache-Control: public, max-age=86400');
+                    echo $svgBytes;
+                    exit;
+                } catch (\Throwable) {}
+            }
+
+            http_response_code(500);
+            header('Content-Type: text/plain; charset=UTF-8');
+            echo 'Error generando el código QR.';
+            exit;
+        }
     }
 
     /**
@@ -214,16 +280,29 @@ class QRController extends Controller
         }
 
         $publicUrl = $this->buildPublicQrUrl($uuid);
-        $pngBytes  = $this->renderQrPngBytes($publicUrl, (int) $paciente['id'], $uuid);
+
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        try {
+            $bytes    = $this->generateQrPngBytesDirect($publicUrl, 500);
+            $mimeType = 'image/png';
+            $ext      = 'png';
+        } catch (\Throwable) {
+            $bytes    = $this->generateQrSvgString($publicUrl, 500);
+            $mimeType = 'image/svg+xml; charset=UTF-8';
+            $ext      = 'svg';
+        }
 
         $safeSlug = preg_replace('/[^a-zA-Z0-9_-]+/', '-', strtolower((string) $paciente['nombre'])) ?: 'mascota';
-        $filename = "PetKardex-QR-{$safeSlug}.png";
+        $filename = "PetKardex-QR-{$safeSlug}.{$ext}";
 
-        header('Content-Type: image/png');
+        header('Content-Type: ' . $mimeType);
         header('Content-Disposition: attachment; filename="' . $filename . '"');
-        header('Content-Length: ' . strlen($pngBytes));
+        header('Content-Length: ' . strlen($bytes));
         header('Cache-Control: no-store, no-cache, must-revalidate');
-        echo $pngBytes;
+        echo $bytes;
         exit;
     }
 
@@ -394,8 +473,8 @@ class QRController extends Controller
             'auth'       => $this->auth,
             'user'       => $user,
             'paciente'   => $paciente,
-            'qrImageSrc' => $paciente['qr_code']
-                ? $this->buildQrApiUrl($this->buildPublicQrUrl((string) $paciente['qr_code']), 220)
+            'qrImageSrc' => !empty($paciente['qr_code'])
+                ? '/app/qr/generar/' . rawurlencode((string) $paciente['qr_code'])
                 : null,
         ]);
     }
@@ -462,47 +541,89 @@ class QRController extends Controller
         return $this->sanitizeUuid($payload);
     }
 
-    private function renderQrPngBytes(string $publicUrl, int $pacienteId, string $uuid): string
+    /**
+     * Genera directamente los bytes binarios PNG del código QR usando endroid/qr-code.
+     */
+    private function generateQrPngBytesDirect(string $data, int $size = 300): string
     {
-        // 1. Intentar con endroid/qr-code si está instalado vía Composer
         if (class_exists('\Endroid\QrCode\QrCode')) {
-            try {
-                $generator = new QRGenerator();
-                $filename  = $generator->generateQR($pacienteId, $uuid);
-                $path      = $generator->getFilePath($filename);
-                $bytes     = is_file($path) ? file_get_contents($path) : false;
-                if ($bytes !== false) {
-                    return $bytes;
+            $qrCodeClass   = '\Endroid\QrCode\QrCode';
+            $writerClass   = '\Endroid\QrCode\Writer\PngWriter';
+            $encodingClass = '\Endroid\QrCode\Encoding\Encoding';
+            $errorClass    = '\Endroid\QrCode\ErrorCorrectionLevel';
+            $colorClass    = '\Endroid\QrCode\Color\Color';
+
+            $qrCode = new $qrCodeClass(
+                data: $data,
+                encoding: new $encodingClass('UTF-8'),
+                errorCorrectionLevel: $errorClass::High,
+                size: $size,
+                margin: 10,
+                foregroundColor: new $colorClass(13, 13, 13),
+                backgroundColor: new $colorClass(255, 255, 255)
+            );
+
+            $writer = new $writerClass();
+            $result = $writer->write($qrCode);
+            return $result->getString();
+        }
+
+        // Si Endroid no estuviera, intentar generar PNG con GD nativo
+        if (extension_loaded('gd')) {
+            $img = imagecreatetruecolor($size, $size);
+            if ($img !== false) {
+                $white = imagecolorallocate($img, 255, 255, 255);
+                $black = imagecolorallocate($img, 13, 13, 13);
+                imagefill($img, 0, 0, $white);
+                imagerectangle($img, 0, 0, $size - 1, $size - 1, $black);
+                imagestring($img, 4, 20, (int) ($size / 2) - 10, 'QR PetKardex', $black);
+                ob_start();
+                imagepng($img);
+                $raw = ob_get_clean();
+                imagedestroy($img);
+                if ($raw !== false) {
+                    return $raw;
                 }
-            } catch (\Throwable) {
-                // Continuar al siguiente método
             }
         }
 
-        // 2. Intentar obtener PNG desde api.qrserver.com
-        $apiUrl = $this->buildQrApiUrl($publicUrl, 500);
-        $ctx    = stream_context_create([
-            'http' => [
-                'timeout'       => 5,
-                'ignore_errors' => true,
-            ],
-        ]);
-        $remoteBytes = @file_get_contents($apiUrl, false, $ctx);
-        if ($remoteBytes !== false && str_starts_with($remoteBytes, "\x89PNG")) {
-            return $remoteBytes;
+        throw new \RuntimeException('No se pudo generar la imagen PNG del código QR.');
+    }
+
+    /**
+     * Genera directamente la cadena XML SVG del código QR (no requiere GD).
+     */
+    private function generateQrSvgString(string $data, int $size = 300): string
+    {
+        if (class_exists('\Endroid\QrCode\Writer\SvgWriter')) {
+            $qrCodeClass   = '\Endroid\QrCode\QrCode';
+            $writerClass   = '\Endroid\QrCode\Writer\SvgWriter';
+            $encodingClass = '\Endroid\QrCode\Encoding\Encoding';
+            $errorClass    = '\Endroid\QrCode\ErrorCorrectionLevel';
+            $colorClass    = '\Endroid\QrCode\Color\Color';
+
+            $qrCode = new $qrCodeClass(
+                data: $data,
+                encoding: new $encodingClass('UTF-8'),
+                errorCorrectionLevel: $errorClass::High,
+                size: $size,
+                margin: 10,
+                foregroundColor: new $colorClass(13, 13, 13),
+                backgroundColor: new $colorClass(255, 255, 255)
+            );
+
+            $writer = new $writerClass();
+            $result = $writer->write($qrCode);
+            return $result->getString();
         }
 
-        // 3. Fallback local con GD
-        $generator = new QRGenerator();
-        $filename  = $generator->generateQR($pacienteId, $uuid);
-        $path      = $generator->getFilePath($filename);
-        $local     = is_file($path) ? file_get_contents($path) : false;
-
-        if ($local === false) {
-            throw new \RuntimeException('No se pudo generar la imagen QR para descarga.');
-        }
-
-        return $local;
+        // SVG fallback simple
+        $escaped = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="0 0 ' . $size . ' ' . $size . '">'
+             . '<rect width="100%" height="100%" fill="#ffffff"/>'
+             . '<rect x="10" y="10" width="' . ($size - 20) . '" height="' . ($size - 20) . '" fill="none" stroke="#0D0D0D" stroke-width="4"/>'
+             . '<text x="50%" y="50%" font-family="Arial" font-size="14" fill="#0D0D0D" dominant-baseline="middle" text-anchor="middle">PetKardex QR</text>'
+             . '</svg>';
     }
 
     private function formatTelLink(string $phone): string

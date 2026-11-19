@@ -5,6 +5,10 @@
  * Controlador principal del sistema interno tras el inicio de sesión.
  * Consulta métricas reales en MySQL según el rol del usuario autenticado
  * y carga alertas médicas internas pendientes para el equipo clínico.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

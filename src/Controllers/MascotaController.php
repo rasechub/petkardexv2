@@ -4,6 +4,10 @@
  *
  * Controlador dedicado al formulario y registro de nuevas mascotas
  * con subida segura de fotografía y generación automática de UUID para QR.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

@@ -1,0 +1,80 @@
+================================================================================
+LICENCIA PROPIETARIA Y DERECHOS DE AUTOR / PROPRIETARY SOFTWARE LICENSE
+TODOS LOS DERECHOS RESERVADOS / ALL RIGHTS RESERVED
+================================================================================
+
+Proyecto:       PetKardex (PetKardex_v2) — ERP Clínico Veterinario e Historial Digital QR
+Autor / Titular: CESAR AQUINO ANGLAS - VI B NOCHE
+Institución:    IESTP Santiago Antúnez de Mayolo (IESTP SAM) — VI Ciclo, Turno Noche
+Año:            2026
+Ubicación:      Lima, Perú
+
+--------------------------------------------------------------------------------
+TÉRMINOS Y CONDICIONES DE LA LICENCIA (ESPAÑOL)
+--------------------------------------------------------------------------------
+
+Copyright (c) 2026 CESAR AQUINO ANGLAS - VI B NOCHE. Todos los derechos reservados.
+
+Por medio del presente documento se establece que este software, su código fuente,
+arquitectura, bases de datos, esquemas relacionales, diseño de interfaces (UI/UX),
+documentación técnica y activos relacionados constituyen una obra protegida por las
+leyes nacionales de propiedad intelectual y derechos de autor (Decreto Legislativo
+N° 822 de la República del Perú) así como por los convenios internacionales sobre
+derecho de autor (Convenio de Berna y tratados de la OMPI).
+
+QUEDA ESTRICTAMENTE PROHIBIDO a cualquier persona natural o jurídica:
+
+1. COPIA Y REPRODUCCIÓN: Copiar, duplicar, clonar, reproducir total o parcialmente
+   el código fuente, diseño, bases de datos o lógica operativa del sistema en cualquier
+   medio físico, magnético, óptico o digital.
+
+2. REDISTRIBUCIÓN Y DIFUSIÓN: Distribuir, sublicenciar, ceder, transferir, prestar,
+   arrendar, publicar en repositorios públicos o privados no autorizados, o transmitir
+   por cualquier vía este software o parte de él.
+
+3. MODIFICACIÓN Y OBRAS DERIVADAS: Modificar, adaptar, traducir, transformar, descompilar,
+   desensamblar o realizar ingeniería inversa sobre el software, así como crear obras
+   derivadas basadas en él.
+
+4. USO COMERCIAL O ACADÉMICO: Usar, implementar, instalar o ejecutar el software con
+   fines comerciales, de lucro, empresariales o para presentaciones académicas, tesis,
+   proyectos de titulación o evaluaciones educativas sin la previa y expresa autorización
+   por escrito otorgada y firmada por el autor: CESAR AQUINO ANGLAS.
+
+Cualquier uso no autorizado constituirá una infracción a los derechos de autor y facultará
+al titular a iniciar las acciones civiles, administrativas (ante INDECOPI) y penales
+correspondientes bajo la legislación aplicable.
+
+Para solicitudes de licencias, autorización de uso o contacto profesional:
+Titular: CESAR AQUINO ANGLAS - VI B NOCHE
+Institución: IESTP Santiago Antúnez de Mayolo (IESTP SAM)
+Año: 2026
+
+--------------------------------------------------------------------------------
+TERMS AND CONDITIONS OF THE LICENSE (ENGLISH)
+--------------------------------------------------------------------------------
+
+Copyright (c) 2026 CESAR AQUINO ANGLAS - VI B NOCHE. All rights reserved.
+
+Notice is hereby given that this software, its source code, relational databases,
+user interface designs, technical documentation and related assets are the exclusive
+intellectual property of CESAR AQUINO ANGLAS - VI B NOCHE and are protected by applicable
+international copyright treaties and laws.
+
+NO PERMISSION IS GRANTED to any individual or entity to:
+- Copy, reproduce, clone, or duplicate the source code or any part of this software.
+- Redistribute, sublicense, rent, lease, or transmit this software in any format.
+- Modify, reverse engineer, decompile, disassemble, or create derivative works.
+- Utilize this software for commercial, business, or academic/educational purposes
+  without explicit, prior written consent from the copyright holder.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+================================================================================
+Firma de Autoría / Author Signature:
+CESAR AQUINO ANGLAS - VI B NOCHE (IESTP Santiago Antúnez de Mayolo, 2026)
+================================================================================
+

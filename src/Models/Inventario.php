@@ -5,6 +5,10 @@
  * Gestiona el CRUD de productos (Farmacia, Pet Shop, Insumos, Servicios),
  * alertas de stock mínimo, movimientos de kardex de inventario y descuento
  * atómico desde recetas médicas y punto de venta.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

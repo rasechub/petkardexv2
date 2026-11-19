@@ -4,6 +4,10 @@
  *
  * Gestiona citas médicas, vacunaciones y citas de estética con filtrado
  * estricto por rol (Propietario solo ve sus citas; Recepción/Admin gestionan todo).
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

@@ -5,6 +5,10 @@
  * Módulo exclusivo para SuperAdmin y Recepcionista/Cajero.
  * Gestiona el CRUD de productos (Farmacia, Pet Shop, Insumos, Servicios),
  * alertas de stock mínimo, ajustes manuales justificados y log de movimientos.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

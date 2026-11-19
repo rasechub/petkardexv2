@@ -33,8 +33,8 @@
         <h5>4. Uso del Código QR e Historial Clínico</h5>
         <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. La vista pública de emergencia muestra únicamente alertas críticas y contacto autorizado.</p>
 
-        <h5>5. Propiedad Intelectual y Legislación Aplicable</h5>
-        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Todos los logotipos, interfaces, bases de datos y contenidos de PetKardex están protegidos por la legislación vigente.</p>
+        <h5>5. Propiedad Intelectual y Derechos de Autor</h5>
+        <p>PetKardex es una obra de software desarrollada por <strong>CESAR AQUINO ANGLAS - VI B NOCHE</strong> (IESTP Santiago Antúnez de Mayolo - IESTP SAM, 2026). Todos los derechos reservados. Queda terminantemente prohibida la copia, reproducción, ingeniería inversa o uso no autorizado conforme a la licencia del software.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-primary-pk" data-bs-dismiss="modal">Entendido</button>

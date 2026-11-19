@@ -24,6 +24,8 @@ $clinicTel   = $clinicPhone !== '' ? 'tel:' . preg_replace('/[^0-9+]/', '', $cli
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <title><?= Security::e((string) ($title ?? 'Perfil de Emergencia QR — PetKardex')) ?></title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -324,6 +326,11 @@ $clinicTel   = $clinicPhone !== '' ? 'tel:' . preg_replace('/[^0-9+]/', '', $cli
       </div>
     </main>
   <?php endif; ?>
+
+  <footer class="text-center mt-4 text-white-50" style="font-size: 0.74rem;">
+    <div class="fw-semibold text-white mb-1"><?= \PetKardex\Config\Config::APP_COPYRIGHT ?></div>
+    <div><?= \PetKardex\Config\Config::APP_INSTITUTION ?> · Todos los derechos reservados.</div>
+  </footer>
 </div>
 
 </body>

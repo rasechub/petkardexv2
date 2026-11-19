@@ -4,6 +4,10 @@
  *
  * Gestiona el listado general de mascotas, búsqueda por nombre/DNI/QR/microchip,
  * catálogos de especies/razas y registro completo de nuevas mascotas con QR UUID.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -42,6 +46,9 @@ class Paciente extends Model
      */
     public function getAllPacientes(string $search = ''): array
     {
+        // Respaldo de seguridad: asegurar que toda mascota registrada tenga UUID v4 asignado
+        $this->asegurarUuidsFaltantes();
+
         $sql = "SELECT p.*, e.nombre AS especie_nombre, r.nombre AS raza_nombre,
                        pr.nombre AS propietario_nombre, pr.apellido AS propietario_apellido,
                        pr.dni AS propietario_dni, pr.celular AS propietario_celular,
@@ -241,7 +248,33 @@ class Paciente extends Model
             $payload['foto'] = $nuevaFotoRuta;
         }
 
+        // Si la mascota carece de UUID QR, asignarle uno v4 de inmediato
+        if (empty($actual['qr_code'])) {
+            $payload['qr_code'] = $this->generateUuidV4();
+        }
+
         $this->update($id, $payload);
+    }
+
+    /**
+     * Asegura que todas las mascotas activas tengan un UUID v4 asignado en qr_code.
+     * Retorna la cantidad de mascotas actualizadas.
+     */
+    public function asegurarUuidsFaltantes(): int
+    {
+        $sinUuid = $this->db->fetchAll(
+            "SELECT id FROM pacientes WHERE qr_code IS NULL OR TRIM(qr_code) = ''"
+        );
+        $count = 0;
+        foreach ($sinUuid as $row) {
+            $newUuid = $this->generateUuidV4();
+            $this->db->execute(
+                "UPDATE pacientes SET qr_code = :uuid, updated_at = NOW() WHERE id = :id",
+                [':uuid' => $newUuid, ':id' => (int) $row['id']]
+            );
+            $count++;
+        }
+        return $count;
     }
 
     private function generateUuidV4(): string

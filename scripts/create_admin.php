@@ -6,6 +6,10 @@
  * Crea el primer usuario Administrador del Sistema (SuperAdmin) desde consola
  * usando hash bcrypt y consultas preparadas PDO.
  *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
+ *
  * Uso interactivo (recomendado dentro del contenedor PHP):
  *   docker exec -it petkardex_app php scripts/create_admin.php
  *

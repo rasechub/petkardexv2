@@ -19,6 +19,8 @@ $loggedOut = isset($_GET['logout']) && $_GET['logout'] === '1';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <title><?= Security::e($pageTitle) ?></title>
 
   <!-- Google Fonts -->
@@ -377,6 +379,11 @@ $loggedOut = isset($_GET['logout']) && $_GET['logout'] === '1';
       <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-2 small text-muted">
         <span>Protegido con CSRF y sesiones seguras</span>
         <a href="/" class="pk-link d-lg-none">Volver al inicio</a>
+      </div>
+
+      <div class="mt-3 pt-2 text-center border-top text-muted" style="font-size: 0.74rem;">
+        <div><strong><?= \PetKardex\Config\Config::APP_COPYRIGHT ?></strong></div>
+        <div><?= \PetKardex\Config\Config::APP_INSTITUTION ?> · Todos los derechos reservados.</div>
       </div>
     </div>
   </div>

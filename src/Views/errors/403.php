@@ -15,6 +15,8 @@ $backText = $isLogged ? 'Volver al Dashboard' : 'Ir al Inicio de Sesión';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <title>403 — Acceso Denegado | PetKardex</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -106,6 +108,11 @@ $backText = $isLogged ? 'Volver al Dashboard' : 'Ir al Inicio de Sesión';
       <a href="<?= Security::e($backUrl) ?>" class="btn btn-pk-back">
         <i class="bi bi-arrow-left-circle me-2"></i><?= Security::e($backText) ?>
       </a>
+    </div>
+
+    <div class="mt-4 pt-3 border-top border-secondary-subtle text-white-50" style="font-size: 0.72rem;">
+      <div><?= \PetKardex\Config\Config::APP_COPYRIGHT ?></div>
+      <div><?= \PetKardex\Config\Config::APP_INSTITUTION ?> · Todos los derechos reservados.</div>
     </div>
   </main>
 </body>

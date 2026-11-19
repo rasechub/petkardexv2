@@ -115,6 +115,8 @@ $renderSidebarNav = static function (array $items, string $activeKey): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <title><?= Security::e($title ?? 'Dashboard — PetKardex') ?></title>
 
   <!-- Google Fonts -->
@@ -477,9 +479,15 @@ $renderSidebarNav = static function (array $items, string $activeKey): string {
     <?= $content ?? '' ?>
   </main>
 
-  <footer class="px-4 py-3 border-top bg-white text-muted small d-flex justify-content-between flex-wrap gap-2">
-    <span>&copy; <?= date('Y') ?> <strong>PetKardex v2</strong> — Gestión Clínica Veterinaria</span>
-    <span>Sesión protegida por roles (ACL)</span>
+  <footer class="px-4 py-3 border-top bg-white text-muted small d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>
+      <span><?= \PetKardex\Config\Config::APP_COPYRIGHT ?></span>
+      <span class="d-none d-md-inline text-muted">· <?= \PetKardex\Config\Config::APP_INSTITUTION ?></span>
+    </div>
+    <div class="text-end">
+      <span class="badge bg-light text-dark border">Todos los derechos reservados</span>
+      <span class="ms-1">Sesión protegida (ACL)</span>
+    </div>
   </footer>
 </div>
 

@@ -4,6 +4,10 @@
  *
  * Maneja inicio/cierre de sesión, recuperación de contraseña y control de acceso.
  * Sin credenciales quemadas en el código fuente.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

@@ -4,6 +4,10 @@
  *
  * Gestiona ventas, liquidación de cuentas médicas por DNI o UUID QR,
  * cálculo fiscal en servidor y descuento automático de inventario.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

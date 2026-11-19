@@ -4,6 +4,10 @@
  *
  * Gestiona la agenda diaria exclusiva del rol Groomer/Estilista y la
  * emisión de Alertas Médicas hacia el Veterinario de turno y el Kardex.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);

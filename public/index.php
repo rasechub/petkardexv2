@@ -4,6 +4,10 @@
  *
  * - Rutas /app/* : Despacha la aplicación MVC a través de Router.
  * - Rutas / y /home : Renderiza la Landing Page pública en HTML5 + Bootstrap 5.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -86,6 +90,8 @@ if ($requestPath !== '/' && $requestPath !== '/home') {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="CESAR AQUINO ANGLAS - VI B NOCHE" />
+  <meta name="copyright" content="© 2026 PetKardex | CESAR AQUINO ANGLAS - VI B NOCHE" />
   <meta name="description" content="PetKardex — Sistema integral de gestión veterinaria con historial médico digital, códigos QR de emergencia, hospitalización, farmacia/Pet Shop y estética." />
   <meta name="keywords" content="veterinaria, ERP veterinario, historial médico mascotas, QR mascotas, PetKardex" />
   <meta property="og:title" content="PetKardex — Clínica Veterinaria e Historial Digital QR" />
@@ -694,9 +700,14 @@ if ($requestPath !== '/' && $requestPath !== '/home') {
     </div>
 
     <hr class="footer-divider" />
-    <p class="footer-bottom">
-      &copy; <span id="copyrightYear"><?= date('Y') ?></span> <span>PetKardex</span>. Todos los derechos reservados.
-    </p>
+    <div class="footer-bottom text-center">
+      <p class="mb-1">
+        &copy; <span id="copyrightYear"><?= date('Y') ?></span> <strong>PetKardex</strong> — Desarrollado por <strong>CESAR AQUINO ANGLAS - VI B NOCHE</strong> (IESTP Santiago Antúnez de Mayolo - IESTP SAM).
+      </p>
+      <p class="small text-muted mb-0">
+        Todos los derechos reservados. Prohibida su copia, distribución o reproducción no autorizada.
+      </p>
+    </div>
   </div>
 </footer>
 

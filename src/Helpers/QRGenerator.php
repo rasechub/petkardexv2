@@ -4,6 +4,10 @@
  *
  * Genera códigos QR para los pacientes usando endroid/qr-code (Composer).
  * Si la librería no está instalada, usa un fallback con API pública en desarrollo.
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
@@ -49,13 +53,13 @@ class QRGenerator
         $filename = "qr_{$pacienteId}_{$token}.png";
         $filepath = $this->qrDir . $filename;
 
-        // Contenido codificado en el QR
-        $content = Config::getBaseUrl() . "/app/portal/paciente/{$pacienteId}?token={$token}";
+        // Contenido codificado en el QR: URL pública del perfil de emergencia
+        $content = rtrim(Config::getBaseUrl(), '/') . "/qr/" . rawurlencode($token);
 
         if (class_exists('\Endroid\QrCode\QrCode')) {
             $this->generateWithEndroid($content, $filepath);
         } else {
-            // Fallback: generar con GD + algoritmo simple, o lanzar excepción clara
+            // Fallback con GD si Endroid no está presente
             $this->generateFallback($content, $filepath);
         }
 

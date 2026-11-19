@@ -4,6 +4,10 @@
  *
  * Gestiona el registro y administración de personal clínico (Veterinarios,
  * Guardias, Recepcionistas, Estilistas) y Propietarios (con DNI vinculado).
+ *
+ * @author    CESAR AQUINO ANGLAS - VI B NOCHE
+ * @copyright 2026 PetKardex. Todos los derechos reservados.
+ * @license   Propietaria - IESTP Santiago Antúnez de Mayolo (IESTP SAM)
  */
 
 declare(strict_types=1);
