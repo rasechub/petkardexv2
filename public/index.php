@@ -56,13 +56,12 @@ if ($requestPath !== '/') {
     $requestPath = rtrim($requestPath, '/');
 }
 
-// Atajo amigable /login -> /app/login
 if ($requestPath === '/login') {
     header('Location: /app/login', true, 302);
     exit;
 }
 
-// 2. Rutas públicas QR (/qr/{uuid}) y aplicación interna (/app/*)
+
 if (
     $requestPath === '/app'
     || str_starts_with($requestPath, '/app/')

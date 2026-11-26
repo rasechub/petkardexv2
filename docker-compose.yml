@@ -6,13 +6,13 @@ services:
     container_name: petkardex_app
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8088:80"
     volumes:
       - .:/var/www/html
       - uploads:/var/www/html/public/uploads
     environment:
       - APP_ENV=${APP_ENV:-development}
-      - APP_URL=${APP_URL:-http://localhost:8080}
+      - APP_URL=https://tissue-pasture-retrace.ngrok-free.dev
       - APP_KEY=${APP_KEY:-}
       - DB_HOST=db
       - DB_PORT=3306
@@ -43,7 +43,7 @@ services:
       - db_data:/var/lib/mysql
       - ./database:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pR00tPetK@rdex!"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pR00tPetK@rdex!" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -75,8 +75,8 @@ services:
     container_name: petkardex_mailhog
     restart: unless-stopped
     ports:
-      - "8025:8025"   # Web UI
-      - "1025:1025"   # SMTP
+      - "8025:8025" # Web UI
+      - "1025:1025" # SMTP
     networks:
       - petkardex_net
 

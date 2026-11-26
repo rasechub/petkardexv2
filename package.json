@@ -1,0 +1,27 @@
+{
+  "name": "petkardex_v2",
+  "version": "1.0.0",
+  "description": "> ### 📜 Autoría y Derechos de Autor (Copyright) > **© 2026 PetKardex — Desarrollado por CESAR AQUINO ANGLAS - VI B NOCHE**   > *(VI Ciclo, Turno Noche — IESTP Santiago Antúnez de Mayolo - IESTP SAM)*.   > **Todos los derechos reservados.** Prohibida su copia, distribución, modificación o uso comercial/académico no autorizado. Consulte el archivo [`LICENSE`](LICENSE) para más detalles.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasechub/petkardexv2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rasechub/petkardexv2/issues"
+  },
+  "homepage": "https://github.com/rasechub/petkardexv2#readme",
+  "devDependencies": {
+    "cypress": "^16.3.0"
+  }
+}

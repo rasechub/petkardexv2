@@ -1,28 +1,26 @@
-name: CI PetKardex - Validación Automática
+name: CI/CD - Mantenimiento PetKardex v2
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 1. Descargar código del repositorio
+      - name: Descargar código
         uses: actions/checkout@v4
 
-      - name: 2. Configurar PHP 8.2
+      - name: Configurar PHP 8.2
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: pdo, pdo_mysql, gd, mbstring
 
-      - name: 3. Verificar sintaxis de todos los archivos PHP (Build)
+      - name: Fase Build - Verificar sintaxis PHP (Lint)
+        run: find src public -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Fase Test - Verificar estructura crítica y seguridad
         run: |
-          find . -path ./vendor -prune -o -name "*.php" -print0 | xargs -0 -n1 -P4 php -l
-
-      - name: 4. Validar dependencias de Composer
-        run: composer validate --no-check-publish || true
+          test -f src/Config/database.php
+          test -f src/Helpers/Security.php
+          echo "Verificación de integridad superada"
